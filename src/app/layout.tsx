@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ToastProvider from "@/providers/ToastProvider";
+import NextAuthProvider from "@/providers/NextAuthProvider";
+import Navbar from "@/components/ui/Navbar";
+import Sidebar from "@/components/ui/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <ToastProvider />
+      <NextAuthProvider>
+      <div className="min-h-screen flex">
+      {/* Sidebar */}
+        <Sidebar />
+        <div className="flex-1 flex flex-col">
+        {/* Navbar */}
+        <div className="md:pl-64">
+                <Navbar />
+            </div>
+        {/* Dashboard content */}
+          <div className="pt-16 md:pl-72 p-4 flex-grow bg-slate-200">
+            {children}
+          </div>
+        </div>
+      </div>
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }
