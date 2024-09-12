@@ -57,15 +57,15 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r bg-base-100">
-      <div className="card w-full max-w-md shadow-xl bg-white rounded-lg">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r bg-base-100 py-4">
+      <div className="card w-full max-w-md shadow-xl bg-slate-200 rounded-lg">
         <div className="card-body p-8">
-          <h2 className="text-2xl font-bold text-center text-blue-600">Create Account</h2>
+          <h2 className="text-2xl font-bold text-center text-slate-800">Create Account</h2>
           <p className="text-center text-gray-500 mb-3">Register to get started</p>
 
           <div className="form-control mb-1">
             <label className="label">
-              <span className="label-text font-semibold text-blue-600">Email</span>
+              <span className="label-text font-semibold text-slate-800">Email</span>
             </label>
             <Input
               value={email}
@@ -78,7 +78,7 @@ export default function RegisterForm() {
 
           <div className="form-control mb-1">
             <label className="label">
-              <span className="label-text font-semibold text-blue-600">Name</span>
+              <span className="label-text font-semibold text-slate-800">Name</span>
             </label>
             <Input
               value={name}
@@ -91,20 +91,21 @@ export default function RegisterForm() {
 
           <div className="form-control mb-1">
             <label className="label">
-              <span className="label-text font-semibold text-blue-600">Role</span>
+              <span className="label-text font-semibold text-slate-800">Role</span>
             </label>
-            <Input
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              placeholder="Enter your role"
-              disabled={loading}
-              className="input-sm w-full input input-bordered border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <select 
+              value={role} onChange={(e) => setRole(e.target.value)} 
+              className='input-sm w-full input input-bordered border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500'>
+              <option>Select Role</option>
+              <option value={"Admin"}>Admin</option>
+              <option value={"User"}>User</option>
+            </select>
+           
           </div>
 
           <div className="form-control mb-1">
             <label className="label">
-              <span className="label-text font-semibold text-blue-600">Password</span>
+              <span className="label-text font-semibold text-slate-800">Password</span>
             </label>
             <Input
               value={password}
@@ -118,7 +119,7 @@ export default function RegisterForm() {
 
           <div className="form-control mb-3">
             <label className="label">
-              <span className="label-text font-semibold text-blue-600">Profile Photo</span>
+              <span className="label-text font-semibold text-slate-800">Profile Photo</span>
             </label>
             <Input
               type="file"
@@ -133,14 +134,14 @@ export default function RegisterForm() {
             <button
               onClick={register}
               disabled={loading}
-              className={`btn btn-primary w-full transition-transform transform hover:scale-105 ${loading ? "loading" : ""}`}
+              className={`btn bg-slate-800 text-white w-full transition-transform transform hover:scale-105 ${loading ? "loading" : ""}`}
             >
               {loading ? "Registering..." : "Register"}
             </button>
           </div>
 
           <div className="text-center mt-4">
-            <Link href="/signin" className="text-blue-500 hover:text-blue-700">
+            <Link href="/signin" className="text-slate-800 hover:text-blue-700">
               Already have an account? <span className="font-semibold">Sign in</span>
             </Link>
           </div>

@@ -24,12 +24,15 @@ const Sidebar = () => {
   return (
     <>
       {/* Button to toggle sidebar on small screens */}
-      <button
-        className="btn btn-primary fixed top-4 left-4 z-50 md:hidden"
-        onClick={toggleSidebar}
-      >
-        ☰
-      </button>
+      <div className='bg-slate-800'>
+        <button
+          className="text-2xl  text-white p-2 top-4 md:fixed left-4 z-50 md:hidden"
+          onClick={toggleSidebar}
+        >
+          ☰
+        </button>
+
+      </div>
 
       {/* Sidebar */}
       <div
@@ -38,7 +41,7 @@ const Sidebar = () => {
         } md:translate-x-0 z-40`}
       >
         <div className="p-4 h-full flex flex-col">
-          <h2 className="text-xl text font-bold">Dashboard</h2>
+          <Link href="/" className="text-xl text font-bold">Dashboard</Link>
           <ul className="menu p-4 space-y-2 flex-grow">
             <li>
           <div
@@ -84,14 +87,14 @@ const Sidebar = () => {
           </div>
           {isUserExpanded && (
             <ul className="ml-6 mt-2 space-y-2">
-              <li>
+              <div className={isActive("/admin/user") ? "bg-slate-700 text-white p-2 rounded" : "p-2"}>
                 <Link
                   href="/admin/user/"
-                  className={isActive("/admin/user/") ? "bg-slate-700 p-2 text-white rounded" : "p-2"}
+                  
                 >
                   List Users
                 </Link>
-              </li>
+              </div>
             </ul>
           )}
         </li>

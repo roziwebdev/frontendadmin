@@ -108,7 +108,7 @@ export default function AddForm() {
                 </div>
                 <div className="card-actions mt-6">
                     <button
-                        className={`btn btn-primary w-full ${loading ? "loading" : ""}`}
+                        className={`btn-md btn bg-slate-800 text-white w-full ${loading ? "loading" : ""}`}
                         onClick={addProduct}
                         disabled={loading}
                     >

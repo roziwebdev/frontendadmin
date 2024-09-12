@@ -43,8 +43,8 @@ export default function Product({ name, description, price, image, id, onDelete,
       </td>
       <td className="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
           <div className='flex space-x-2'>
-              <Link href={`/product/${id}`} className="btn btn-xs bg-yellow-500 text-slate-600 hover:text-slate-900">Edit</Link>
-              <button className='btn btn-xs bg-red-500 text-slate-600 hover:text-slate-900' onClick={() => onDelete(id)}>Delete</button>
+              <Link href={`/product/${id}`} className="btn btn-xs text-white bg-yellow-500  hover:text-slate-900">Edit</Link>
+              <button className='btn btn-xs bg-red-500  text-white hover:text-slate-900' onClick={() => onDelete(id)}>Delete</button>
           </div>
       </td>
     </tr>

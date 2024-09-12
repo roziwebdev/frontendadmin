@@ -8,13 +8,8 @@ export default function Navbar() {
 const { data: session } = useSession();
   return (
     <div className="  navbar bg-base-100 flex justify-between items-center">
-      <a className="btn btn-ghost normal-case text-xl">MyApp</a>
+      <Link href={"/"} className="ml-3 text-2xl normal-case">Arjaya Team</Link>
       <div className="flex items-center gap-4">
-        <input
-          type="text"
-          placeholder="Search"
-          className="input input-bordered hidden md:block"
-        />
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
@@ -43,7 +38,6 @@ const { data: session } = useSession();
                     <span className="badge">New</span>
                 </Link>
                 </li>
-                <li><a>Settings</a></li>
                 <li><button onClick={()=>signOut()}>Logout</button></li>
             </ul>
         </div>

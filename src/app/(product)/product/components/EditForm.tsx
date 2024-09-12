@@ -155,7 +155,7 @@ export default function EditForm({ productId }: EditFormProps) {
             <button
               onClick={updateProduct}
               disabled={loading}
-              className={`btn btn-primary w-full ${loading ? "loading" : ""}`}
+              className={`btn-md btn bg-slate-800 text-white w-full ${loading ? "loading" : ""}`}
             >
               {loading ? "Updating..." : "Update Product"}
             </button>
