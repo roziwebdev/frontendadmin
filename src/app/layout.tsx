@@ -3,12 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/providers/ToastProvider";
 import NextAuthProvider from "@/providers/NextAuthProvider";
-import Navbar from "@/components/ui/Navbar";
-import Sidebar from "@/components/ui/Sidebar";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/libs/AuthOption";
 import LoggedInLayout from "@/components/Layout/LoggedInLayout";
 import LoggedOutLayout from "@/components/Layout/LoggedOutLayout";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/AuthOption";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,19 +20,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    
-    const session = await getServerSession(authOptions);
+  // Session diambil di server-side
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ToastProvider />
-      <NextAuthProvider>
-      {session ? (
-          <LoggedInLayout>{children}</LoggedInLayout>
-        ) : (
-          <LoggedOutLayout>{children}</LoggedOutLayout>
-        )}
-
+        <ToastProvider />
+        <NextAuthProvider>
+          {session ? (
+            <LoggedInLayout>{children}</LoggedInLayout>
+          ) : (
+            <LoggedOutLayout>{children}</LoggedOutLayout>
+          )}
         </NextAuthProvider>
       </body>
     </html>

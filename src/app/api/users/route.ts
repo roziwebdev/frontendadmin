@@ -38,7 +38,8 @@ export async function GET(req: Request) {
             });
         }
 
-    }catch (error) {
+    } catch (error) {
+        console.log(error);
         return new NextResponse('Internal Error', { status: 500 });
     }
 }

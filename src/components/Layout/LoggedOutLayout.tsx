@@ -6,10 +6,11 @@ import Navbar from '../ui/Navbar'
 
 export default function LoggedOutLayout({ children }: { children: React.ReactNode }) {
     return (
+
+      <div className=" bg-slate-200">
         
-            <div className=" bg-slate-200">
               {children}
             </div>
     )
-  
+
 }

@@ -29,16 +29,20 @@ const { data: session } = useSession();
                           }
                 </div>
             </div>
-          <ul
+            <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li>
+              <li>
                 <Link href={"/profile"} className="justify-between">
                     Profile
-                    <span className="badge">New</span>
                 </Link>
-                </li>
-                <li><button onClick={()=>signOut()}>Logout</button></li>
+              </li>
+              <li>
+                  <Link href={"/profile/settings"}>Settings</Link>
+              </li>
+              <li>
+                <button onClick={() => signOut()}>Logout</button>
+              </li>
             </ul>
         </div>
       </div>
