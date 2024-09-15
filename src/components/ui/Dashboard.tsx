@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaBox, FaUsers, FaChartLine } from "react-icons/fa"; // Icons
+import { FaBox, FaUsers, FaChartLine, FaDollarSign } from "react-icons/fa"; // Icons
 import { Line } from "react-chartjs-2"; // Line chart component
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 
@@ -42,11 +42,11 @@ export default function Dashboard() {
         {/* Card for Total Products */}
         <div className="card shadow-lg bg-white text-dark">
           <div className="card-body items-center text-center">
-            <FaBox className="text-6xl mb-4" />
-            <h2 className="card-title text-2xl font-bold">Total Products</h2>
-            <p className="text-4xl font-semibold">150</p>
-            <progress className="progress progress-dark w-full mt-2" value="70" max="100"></progress>
-            <p className="text-sm text-dark mt-2">70% of product goal reached</p>
+            <FaDollarSign className="text-6xl mb-4" />
+            <h2 className="card-title text-2xl font-bold">Total Sales</h2>
+            <p className="text-4xl font-semibold">950</p>
+            <progress className="progress progress-dark w-full mt-2" value="950" max="1000"></progress>
+            <p className="text-sm text-dark mt-2">95% of sales goal reached</p>
           </div>
         </div>
 
