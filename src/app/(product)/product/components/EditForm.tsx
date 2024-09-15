@@ -41,6 +41,9 @@ export default function EditForm({ productId }: EditFormProps) {
   }
 
   const updateProduct = async () => {
+    if( !name || !description || !price ) {
+      toast.error("Please fill in all the fields")
+    }
     setLoading(true)
     try {
       let imageUrl = currentImageUrl

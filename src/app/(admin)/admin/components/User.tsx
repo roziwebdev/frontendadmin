@@ -43,7 +43,8 @@ export default function User({ id, name, email, role, profilePhotoUrl, onDelete,
       </td>
          <td className="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
           <div className='flex space-x-2'>
-              <button className='btn btn-xs bg-red-500 text-slate-600 hover:text-slate-900' onClick={() => onDelete(id)}>Delete</button>
+              <button className='btn btn-xs bg-red-500 text-white hover:text-slate-900' onClick={() => onDelete(id)}>Delete</button>
+              <Link className='btn btn-xs bg-yellow-500 text-white hover:text-slate-900' href={`/admin/user/${id}`}>Edit</Link>
           </div>
       </td>
       </tr>

@@ -18,6 +18,9 @@ export default function AddForm() {
     };
 
     const addProduct = async () => {
+        if (!name || !description || !price || !image) {
+            toast.error("Please fill in all the fields")
+        }
         setLoading(true)
         try {
             let imageUrl = null;
@@ -40,7 +43,7 @@ export default function AddForm() {
                     image: imageUrl,
                 })
             })
-            router.refresh()
+            router.push('/product')
             toast.success("Product added")
         } catch (error) {
             toast.error("Something went wrong")

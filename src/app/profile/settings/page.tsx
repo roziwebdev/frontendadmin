@@ -106,21 +106,6 @@ const updateUser = async () => {
                         />
                     </div>
 
-                    <div className="form-control mb-1">
-                        <label className="label">
-                            <span className="label-text font-semibold text-slate-800">Role</span>
-                        </label>
-                        <select 
-                            value={role} 
-                            onChange={(e) => setRole(e.target.value)} 
-                            className='input input-bordered border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full'
-                            disabled={loading}
-                        >
-                            <option value="" disabled>Select Role</option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                        </select>
-                    </div>
 
                     <div className="form-control mb-3">
                         <label className="label">

@@ -16,7 +16,7 @@ export default function Dashboard() {
         label: "Website Visitors",
         data: [1200, 1900, 800, 1500, 2200, 3000, 2800], // Dummy data
         fill: false,
-        borderColor: "rgb(75, 192, 192)",
+        borderColor: "",
         tension: 0.1,
       },
     ],
@@ -36,33 +36,33 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
+    <div className="p-2">
+      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Card for Total Products */}
-        <div className="card shadow-lg bg-primary text-primary-content">
+        <div className="card shadow-lg bg-white text-dark">
           <div className="card-body items-center text-center">
             <FaBox className="text-6xl mb-4" />
             <h2 className="card-title text-2xl font-bold">Total Products</h2>
             <p className="text-4xl font-semibold">150</p>
-            <progress className="progress progress-accent w-full mt-2" value="70" max="100"></progress>
-            <p className="text-sm text-accent mt-2">70% of product goal reached</p>
+            <progress className="progress progress-dark w-full mt-2" value="70" max="100"></progress>
+            <p className="text-sm text-dark mt-2">70% of product goal reached</p>
           </div>
         </div>
 
         {/* Card for Total Users */}
-        <div className="card shadow-lg bg-secondary text-secondary-content">
+        <div className="card shadow-lg bg-white text-dark">
           <div className="card-body items-center text-center">
             <FaUsers className="text-6xl mb-4" />
-            <h2 className="card-title text-2xl font-bold">Total Users</h2>
+            <h2 className="card-title text-2xl font-bold">Total Customers</h2>
             <p className="text-4xl font-semibold">200</p>
-            <progress className="progress progress-primary w-full mt-2" value="85" max="100"></progress>
-            <p className="text-sm text-primary mt-2">85% of user goal reached</p>
+            <progress className="progress progress-dark w-full mt-2" value="85" max="100"></progress>
+            <p className="text-sm text-dark mt-2">85% of user goal reached</p>
           </div>
         </div>
 
         {/* Card for Website Visitors with Line Chart */}
-        <div className="card shadow-lg bg-accent text-accent-content">
+        <div className="card shadow-lg bg-white text-dark">
           <div className="card-body items-center text-center">
             <FaChartLine className="text-6xl mb-4" />
             <h2 className="card-title text-2xl font-bold">Website Visitors</h2>
