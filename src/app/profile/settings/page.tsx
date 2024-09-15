@@ -41,9 +41,6 @@ const updateUser = async () => {
 
         const res = await fetch(`/api/users/${session?.user.id}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify({
                 name,
                 email,
@@ -56,7 +53,6 @@ const updateUser = async () => {
             // Refresh the session after successful update
             console.log("User updated successfully, refreshing session...");
             await signIn('credentials', { redirect: false });
-            await fetch('/api/auth/session?update');
             router.push('/profile');
             toast.success("User updated successfully");
         } else {

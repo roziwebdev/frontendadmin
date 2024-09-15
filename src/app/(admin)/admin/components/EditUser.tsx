@@ -55,9 +55,6 @@ export default function EditUser({ userId }: EditUserProps) {
 
             const res = await fetch(`/api/users/${userId}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify({
                     name,
                     role,

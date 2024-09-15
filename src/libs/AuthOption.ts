@@ -6,12 +6,14 @@ import { AuthOptions } from "next-auth";
 export const authOptions: AuthOptions = {
     providers: [
         Credentials({
+            
             name: "Credentials",
             credentials: {
                 email: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
+                console.log("Credentials:", credentials);
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error("Missing Credentials");
                 }

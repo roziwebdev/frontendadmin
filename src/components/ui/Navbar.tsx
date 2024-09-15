@@ -10,7 +10,7 @@ const { data: session } = useSession();
     <div className="  navbar bg-base-100 flex justify-between items-center">
       <Link href={"/"} className="ml-3 text-2xl normal-case">
         <Image
-        src={"/logo.png"}
+        src={"/icon.png"}
         width={128}
         height={128}
         alt='Logo'
