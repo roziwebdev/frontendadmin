@@ -8,7 +8,14 @@ export default function Navbar() {
 const { data: session } = useSession();
   return (
     <div className="  navbar bg-base-100 flex justify-between items-center">
-      <Link href={"/"} className="ml-3 text-2xl normal-case">Arjaya Team</Link>
+      <Link href={"/"} className="ml-3 text-2xl normal-case">
+        <Image
+        src={"/logo.png"}
+        width={128}
+        height={128}
+        alt='Logo'
+        />
+      </Link>
       <div className="flex items-center gap-4">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
