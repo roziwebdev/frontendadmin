@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prismadb from "@/libs/prismadb";
 import cloudinary from "@/libs/cloudinary";
 import { getServerSession } from "next-auth/next";
@@ -14,7 +14,7 @@ const cors = initMiddleware(
   })
 );
 
-export async function GET(req: Request, res: Response) {
+export async function GET(req: NextRequest, res: NextResponse) {
     await cors(req, res);
     try {
         const session = await getServerSession(authOptions);
@@ -58,6 +58,7 @@ export async function GET(req: Request, res: Response) {
 
 
 export async function POST(req: Request) {
+    
     try {
         const session = await getServerSession(authOptions);
 
