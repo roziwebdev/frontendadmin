@@ -15,7 +15,7 @@ function setCORSHeaders(response: NextResponse) {
 
 
 
-export async function GET(req: NextRequest, res: NextResponse , { params }: { params: { productId: string } }) {
+export async function GET(request: NextRequest, response: NextResponse , { params }: { params: { productId: string } }) {
     try {
         const { productId } = params;
         const session = await getServerSession(authOptions)
@@ -55,7 +55,7 @@ export async function GET(req: NextRequest, res: NextResponse , { params }: { pa
     }
 }
 
-export async function PUT(req: NextRequest, res: NextResponse, { params }: { params: { productId: string } }) {
+export async function PUT(request: NextRequest, response: NextResponse, { params }: { params: { productId: string } }) {
     try {
 
         const session = await getServerSession(authOptions)
@@ -69,7 +69,7 @@ export async function PUT(req: NextRequest, res: NextResponse, { params }: { par
 
         const userRole = session.user.role;
 
-        const body = await req.json();
+        const body = await request.json();
         const {  name, price, description, image } = body;
         if (userRole == "Admin") {
             // Fetch the current product to get the existing image if no new image is uploaded
@@ -156,7 +156,7 @@ export async function PUT(req: NextRequest, res: NextResponse, { params }: { par
     }
 }
 
-export async function DELETE(req: NextRequest, res: NextResponse, { params }: { params: { productId: string } }) {
+export async function DELETE(request: NextRequest, response: NextResponse, { params }: { params: { productId: string } }) {
     try {
         const session = await getServerSession(authOptions);
         const { productId } = params;
