@@ -35,7 +35,7 @@ export async function GET(request: NextRequest, response: NextResponse , { param
                 const product = await prismadb.product.findUnique({
                     where: {
                         id: productId,
-                        userId: session.user.id
+                        userId: session?.user.id
                     }
                 });
                 if (!product) {
@@ -67,7 +67,7 @@ export async function PUT(request: NextRequest, response: NextResponse, { params
           return setCORSHeaders(response); // Set CORS headers on error as well
         }
 
-        const userRole = session.user.role;
+        const userRole = session?.user.role;
 
         const body = await request.json();
         const {  name, price, description, image } = body;
@@ -110,7 +110,7 @@ export async function PUT(request: NextRequest, response: NextResponse, { params
             const existingProduct = await prismadb.product.findUnique({
                 where: {
                     id: productId,
-                    userId: session.user.id
+                    userId: session?.user.id
                 },
             });
 
@@ -137,7 +137,7 @@ export async function PUT(request: NextRequest, response: NextResponse, { params
             const updatedProduct = await prismadb.product.update({
                 where: {
                     id: productId,
-                    userId: session.user.id
+                    userId: session?.user.id
                 },
                 data: {
                     name,
@@ -177,7 +177,7 @@ export async function DELETE(request: NextRequest, response: NextResponse, { par
             const product = await prismadb.product.delete({
                 where: {
                     id: productId,
-                    userId: session.user.id
+                    userId: session?.user.id
                 }
             });
             return NextResponse.json(product);
