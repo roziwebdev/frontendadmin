@@ -3,9 +3,19 @@ import prismadb from "@/libs/prismadb";
 import cloudinary from "@/libs/cloudinary";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/libs/AuthOption";
+import initMiddleware from "@/libs/initMiddleware";
+import Cors from "cors";
 
 
-export async function GET(req: Request) {
+const cors = initMiddleware(
+  Cors({
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+  })
+);
+
+export async function GET(req: Request, res: Response) {
+    await cors(req, res);
     try {
         const session = await getServerSession(authOptions);
 
