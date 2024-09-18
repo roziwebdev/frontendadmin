@@ -19,7 +19,7 @@ export async function GET(req: NextRequest, res: NextResponse , { params }: { pa
     try {
         const { productId } = params;
         const session = await getServerSession(authOptions)
-        const userRole = session.user.role;
+        const userRole = session?.user.role;
 
         if (userRole == "Admin") {
             const product = await prismadb.product.findUnique({
