@@ -29,7 +29,8 @@ export async function GET(request: NextRequest, response: NextResponse , { param
                 return NextResponse.json({ message: 'Product not found' }, { status: 404 });
               return setCORSHeaders(response); // Set CORS headers on error as well
             }
-        return NextResponse.json(product);
+            return NextResponse.json(product);
+            return setCORSHeaders(response);
         } else {
             try {
                 const product = await prismadb.product.findUnique({
@@ -43,6 +44,7 @@ export async function GET(request: NextRequest, response: NextResponse , { param
                   return setCORSHeaders(response); // Set CORS headers on error as well
                 }
                 return NextResponse.json(product);
+                return setCORSHeaders(response);
             }catch (error) {
                 return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
               return setCORSHeaders(response); // Set CORS headers on error as well
@@ -186,5 +188,6 @@ export async function DELETE(request: NextRequest, response: NextResponse, { par
 
     } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        return setCORSHeaders(response);
     }
 }
