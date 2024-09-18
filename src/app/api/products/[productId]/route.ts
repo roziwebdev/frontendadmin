@@ -4,26 +4,21 @@ import cloudinary from "@/libs/cloudinary";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/AuthOption";
 import initMiddleware from "@/libs/initMiddleware";
-import Cors from "cors";
 
-const cors = initMiddleware(
-  Cors({
-    origin: '*', // Allow all origins
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
-  })
-);
+function setCORSHeaders(response: NextResponse) {
+    response.headers.set("Access-Control-Allow-Origin", "*"); // Allow all origins
+    response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    return response;
+}
 
 
 
 
 export async function GET(req: NextRequest, res: NextResponse , { params }: { params: { productId: string } }) {
-    await cors(req, res);
     try {
         const { productId } = params;
         const session = await getServerSession(authOptions)
-        if(!session?.user) {
-            return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-        }
         const userRole = session.user.role;
 
         if (userRole == "Admin") {
@@ -32,6 +27,7 @@ export async function GET(req: NextRequest, res: NextResponse , { params }: { pa
             });
             if (!product) {
                 return NextResponse.json({ message: 'Product not found' }, { status: 404 });
+              return setCORSHeaders(response); // Set CORS headers on error as well
             }
         return NextResponse.json(product);
         } else {
@@ -44,20 +40,22 @@ export async function GET(req: NextRequest, res: NextResponse , { params }: { pa
                 });
                 if (!product) {
                     return NextResponse.json({ message: 'Product not found' }, { status: 404 });
+                  return setCORSHeaders(response); // Set CORS headers on error as well
                 }
                 return NextResponse.json(product);
             }catch (error) {
                 return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+              return setCORSHeaders(response); // Set CORS headers on error as well
             }
         }
     } catch (error) {
         console.error('Error fetching product:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+      return setCORSHeaders(response); // Set CORS headers on error as well
     }
 }
 
 export async function PUT(req: NextRequest, res: NextResponse, { params }: { params: { productId: string } }) {
-    await cors(req, res);
     try {
 
         const session = await getServerSession(authOptions)
@@ -66,6 +64,7 @@ export async function PUT(req: NextRequest, res: NextResponse, { params }: { par
 
         if (!session?.user) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+          return setCORSHeaders(response); // Set CORS headers on error as well
         }
 
         const userRole = session.user.role;
@@ -102,6 +101,7 @@ export async function PUT(req: NextRequest, res: NextResponse, { params }: { par
             });
 
             return NextResponse.json(updatedProduct);
+          return setCORSHeaders(response); // Set CORS headers on error as well
         }
 
         if (userRole == "User") {
@@ -116,10 +116,12 @@ export async function PUT(req: NextRequest, res: NextResponse, { params }: { par
 
             if(session?.user.id !== existingProduct?.userId) {
                 return new NextResponse('Not your product', { status: 401 });
+              return setCORSHeaders(response); // Set CORS headers on error as well
             }
 
              if (!existingProduct) {
                 return new NextResponse('Product not found', { status: 404 });
+               return setCORSHeaders(response); // Set CORS headers on error as well
             }
 
             let imageUrl = existingProduct.image; // Use the existing image if no new image is uploaded
@@ -145,20 +147,22 @@ export async function PUT(req: NextRequest, res: NextResponse, { params }: { par
                 }
             });
             return NextResponse.json(updatedProduct);
+          return setCORSHeaders(response); // Set CORS headers on error as well
          }
 
     } catch (error) {
         return console.error(error);
+      return setCORSHeaders(response); // Set CORS headers on error as well
     }
 }
 
 export async function DELETE(req: NextRequest, res: NextResponse, { params }: { params: { productId: string } }) {
-    await cors(req, res);
     try {
         const session = await getServerSession(authOptions);
         const { productId } = params;
         if (!session?.user) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+          return setCORSHeaders(response); // Set CORS headers on error as well
         }
 
         const userRole = session.user.role;
@@ -167,6 +171,7 @@ export async function DELETE(req: NextRequest, res: NextResponse, { params }: { 
                 where: { id: productId },
             });
             return NextResponse.json(product);
+          return setCORSHeaders(response); // Set CORS headers on error as well
         }
         if(userRole == "User") {
             const product = await prismadb.product.delete({
@@ -176,6 +181,7 @@ export async function DELETE(req: NextRequest, res: NextResponse, { params }: { 
                 }
             });
             return NextResponse.json(product);
+          return setCORSHeaders(response); // Set CORS headers on error as well
         }
 
     } catch (error) {
