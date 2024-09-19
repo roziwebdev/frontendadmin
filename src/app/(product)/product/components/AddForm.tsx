@@ -111,20 +111,23 @@ export default function AddForm() {
                 </div>
                 <div className="card-actions mt-6">
                     {loading ? (
-                        <button type="button" class="btn-md btn bg-slate-800 text-white w-full  ..." disabled>
-                          <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-                            <!-- ... -->
-                          </svg>
-                          Processing...
-                        </button> 
+                        <div>
+                            <button type="button" class="btn-md btn bg-slate-800 text-white w-full  ..." disabled>
+                              <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                                <!-- ... -->
+                              </svg>
+                              Processing...
+                            </button> 
+                        </div>
                         ) : (
-                            <button
-                                className={'btn-md btn bg-slate-800 text-white w-full'}
-                                onClick={addProduct}
-                            >
-                                Add Product
-                            </button>
-                            )
+                            <div>
+                                <button
+                                    className={'btn-md btn bg-slate-800 text-white w-full'}
+                                    onClick={addProduct}>
+                                    Add Product
+                                </button>
+                            </div>
+                        )
                     }
                 </div>
             </div>
