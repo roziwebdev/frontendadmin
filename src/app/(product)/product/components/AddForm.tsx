@@ -18,9 +18,6 @@ export default function AddForm() {
     };
 
     const addProduct = async () => {
-        if (!name || !description || !price || !image) {
-            toast.error("Please fill in all the fields")
-        }
         setLoading(true)
         try {
             let imageUrl = null;
@@ -43,7 +40,7 @@ export default function AddForm() {
                     image: imageUrl,
                 })
             })
-            router.push('/product')
+            router.refresh()
             toast.success("Product added")
         } catch (error) {
             toast.error("Something went wrong")
@@ -110,27 +107,14 @@ export default function AddForm() {
                     </div>
                 </div>
                 <div className="card-actions mt-6">
-                    {loading ? (
-                        <div>
-                            <button type="button" class="btn-md btn bg-slate-800 text-white w-full  ..." disabled>
-                              <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-                                <!-- ... -->
-                              </svg>
-                              Processing...
-                            </button> 
-                        </div>
-                        ) : (
-                            <div>
-                                <button
-                                    className={'btn-md btn bg-slate-800 text-white w-full'}
-                                    onClick={addProduct}>
-                                    Add Product
-                                </button>
-                            </div>
-                        )
-                    }
+                    <button
+                        className={`btn btn-primary w-full ${loading ? "loading" : ""}`}
+                        onClick={addProduct}
+                        disabled={loading}
+                    >
+                        {loading ? "Adding..." : "Add Product"}
+                    </button>
                 </div>
             </div>
         </div>
     )
-}
